@@ -1,0 +1,94 @@
+﻿<Window x:Class="EntityMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityMaker"
+        xmlns:resx="clr-namespace:EntityMaker.Properties"
+        mc:Ignorable="d"
+        Width="1200" Height="700" Title="{x:Static resx:MainWindowResources.TITLE}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ControlTemplate x:Key="DefaultButton" TargetType="Button">
+            <Border Name="Border"
+                    BorderThickness="1"
+                    BorderBrush="#A9A9A9"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="3">
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="#A9A9A9"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="#808080"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="817*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3">
+            <GroupBox Header="{x:Static resx:MainWindowResources.PASTE_TYPE}" Margin="0,5,5,0">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="IsSnake" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.SNAKE}" Checked="IsSnake_Checked"/>
+                    <RadioButton x:Name="IsUseAsIs" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.USE_AS_IS}" Checked="IsUseAsIs_Checked"/>
+                    <RadioButton x:Name="IsDef" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.BY_DEFINITION}" Checked="IsDef_Checked"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static resx:MainWindowResources.CONVERSION_PATTERN}" Margin="0,5,5,0">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="IsPascal" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.PASCAL}"/>
+                    <RadioButton x:Name="IsCamel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.CAMEL}"/>
+                    <RadioButton x:Name="IsLower" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.LOWER_CASE}"/>
+                    <RadioButton x:Name="IsUpper" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.UPPER_CASE}"/>
+                    <RadioButton x:Name="IsProperty" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.PROPERTY}"/>
+                    <RadioButton x:Name="IsViewModel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.VIEW_MODEL}"/>
+                </StackPanel>
+            </GroupBox>
+            <Button x:Name="Make" Width="60" HorizontalAlignment="Left" Margin="0,14,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.MAKE}" Click="Make_Click"/>
+            <Button x:Name="ClearValue" Width="60" HorizontalAlignment="Left" Margin="0,14,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.CLEAR}" Click="ClearValue_Click"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{x:Static resx:MainWindowResources.STICK_HERE}"/>
+                <TextBox Grid.Row="2" x:Name="ConvertSource" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
+            </Grid>
+            <DataGrid Grid.Column="2"
+                      x:Name="AfterConvert"
+                      HeadersVisibility="Column"
+                      AutoGenerateColumns="False"
+                      SelectionUnit="Cell"
+                      CanUserAddRows="False"
+                      AlternatingRowBackground="#D8BFD8"
+                      GridLinesVisibility="None"
+                      Background="#FFFFFF">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static resx:MainWindowResources.AFTER_CONVERSION}" Binding="{Binding SourceCode}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
