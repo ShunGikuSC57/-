@@ -70,15 +70,6 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   By definition に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string BY_DEFINITION {
-            get {
-                return ResourceManager.GetString("BY_DEFINITION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Camel に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string CAMEL {
@@ -106,6 +97,52 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Definition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEFINITION {
+            get {
+                return ResourceManager.GetString("DEFINITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Column ID,COLUMN_ID,char(n),Yes
+        ///Column name,COLUMN_NAME,nvarchar(n),Y
+        ///User password,USER_PASSWORD,text,No
+        ///Role ID,ROLE_ID,int,N
+        ///Creation date and time,CREATED_AT,date,
+        ///updated_date,UPDATED_AT,datetime, に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXAMPLE_DEFINITION {
+            get {
+                return ResourceManager.GetString("EXAMPLE_DEFINITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   COLUMN_ID
+        ///COLUMN_NAME
+        ///USER_PASSWORD
+        ///ROLE_ID
+        ///CREATED_AT
+        ///UPDATED_AT に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXAMPLE_NAME_ONLY {
+            get {
+                return ResourceManager.GetString("EXAMPLE_NAME_ONLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Get or set {0}. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GET_OR_SET {
+            get {
+                return ResourceManager.GetString("GET_OR_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   lower case letters に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LOWER_CASE {
@@ -120,6 +157,15 @@ namespace EntityMaker.Properties {
         public static string MAKE {
             get {
                 return ResourceManager.GetString("MAKE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Name only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NAME_ONLY {
+            get {
+                return ResourceManager.GetString("NAME_ONLY", resourceCulture);
             }
         }
         
@@ -151,16 +197,25 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   Snake case に類似しているローカライズされた文字列を検索します。
+        ///   Property Name に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string SNAKE {
+        public static string PROPERTY_NAME {
             get {
-                return ResourceManager.GetString("SNAKE", resourceCulture);
+                return ResourceManager.GetString("PROPERTY_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Stick it here! に類似しているローカライズされた文字列を検索します。
+        ///   Snake to Pascal に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SNAKE_TO_PASCAL {
+            get {
+                return ResourceManager.GetString("SNAKE_TO_PASCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stick it up here! (See the tooltip for an example) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string STICK_HERE {
             get {

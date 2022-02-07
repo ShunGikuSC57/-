@@ -120,9 +120,6 @@
   <data name="AFTER_CONVERSION" xml:space="preserve">
     <value>返還後</value>
   </data>
-  <data name="BY_DEFINITION" xml:space="preserve">
-    <value>定義から</value>
-  </data>
   <data name="CAMEL" xml:space="preserve">
     <value>キャメル</value>
   </data>
@@ -132,11 +129,36 @@
   <data name="CONVERSION_PATTERN" xml:space="preserve">
     <value>変換パターン</value>
   </data>
+  <data name="DEFINITION" xml:space="preserve">
+    <value>定義</value>
+  </data>
+  <data name="EXAMPLE_DEFINITION" xml:space="preserve">
+    <value>カラムID,COLUMN_ID,char(n),Yes
+カラム名,COLUMN_NAME,nvarchar(n),Y
+ユーザーパスワード,USER_PASSWORD,text,No
+ロールID,ROLE_ID,int,N
+作成日時,CREATED_AT,date,
+更新日時,UPDATED_AT,datetime,</value>
+  </data>
+  <data name="EXAMPLE_NAME_ONLY" xml:space="preserve">
+    <value>COLUMN_ID
+COLUMN_NAME
+USER_PASSWORD
+ROLE_ID
+CREATED_AT
+UPDATED_AT</value>
+  </data>
+  <data name="GET_OR_SET" xml:space="preserve">
+    <value>{0}を取得または設定します。</value>
+  </data>
   <data name="LOWER_CASE" xml:space="preserve">
     <value>小文字</value>
   </data>
   <data name="MAKE" xml:space="preserve">
     <value>つく～る </value>
+  </data>
+  <data name="NAME_ONLY" xml:space="preserve">
+    <value>名称のみ</value>
   </data>
   <data name="PASCAL" xml:space="preserve">
     <value>パスカル</value>
@@ -147,11 +169,14 @@
   <data name="PROPERTY" xml:space="preserve">
     <value>プロパティ</value>
   </data>
-  <data name="SNAKE" xml:space="preserve">
-    <value>スネークケース</value>
+  <data name="PROPERTY_NAME" xml:space="preserve">
+    <value>プロパティ名</value>
+  </data>
+  <data name="SNAKE_TO_PASCAL" xml:space="preserve">
+    <value>スネーク から パスカル</value>
   </data>
   <data name="STICK_HERE" xml:space="preserve">
-    <value>ここに張り付けてください！</value>
+    <value>ここに張り付けてください！（記入例はツールチップをみてください）</value>
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>エンティティつく～る</value>

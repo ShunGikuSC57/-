@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Windows;
+using EntityMaker.Properties;
 
 namespace EntityMaker
 {
@@ -10,6 +12,20 @@ namespace EntityMaker
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Constant
+        /// <summary>
+        /// Definition column index
+        /// </summary>
+        private enum DefIndex : int
+        {
+            LogicalName,
+            PhysicsName,
+            DataType,
+            NotNull
+        }
+            
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Constructor
@@ -26,51 +42,79 @@ namespace EntityMaker
         private void Window_Loaded(object sender, RoutedEventArgs e) => Clear();
 
         /// <summary>
-        /// Snake Case check event
+        /// Name Only check event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IsSnake_Checked(object sender, RoutedEventArgs e)
+        private void IsNameOnly_Checked(object sender, RoutedEventArgs e)
         {
             IsPascal.IsEnabled = true;
             IsCamel.IsEnabled = true;
             IsLower.IsEnabled = true;
             IsUpper.IsEnabled = true;
             IsViewModel.IsEnabled = false;
+            IsSnakeToPascal.IsEnabled = false;
+            IsUseAsIs.IsEnabled = false;
 
             IsPascal.IsChecked = true;
+            IsSnakeToPascal.IsChecked = false;
+            IsUseAsIs.IsChecked = false;
+
+            StickHere.ToolTip = MainWindowResources.EXAMPLE_NAME_ONLY;
         }
 
         /// <summary>
-        /// Use as-is check event
+        /// Definition click event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IsUseAsIs_Checked(object sender, RoutedEventArgs e)
-        {
-            IsPascal.IsEnabled = false;
-            IsCamel.IsEnabled = false;
-            IsLower.IsEnabled = true;
-            IsUpper.IsEnabled = true;
-            IsViewModel.IsEnabled = false;
-
-            IsLower.IsChecked = true;
-        }
-
-        /// <summary>
-        /// By definition check event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void IsDef_Checked(object sender, RoutedEventArgs e)
+        private void IsDefinition_Checked(object sender, RoutedEventArgs e)
         {
             IsPascal.IsEnabled = false;
             IsCamel.IsEnabled = false;
             IsLower.IsEnabled = false;
             IsUpper.IsEnabled = false;
             IsViewModel.IsEnabled = true;
+            IsSnakeToPascal.IsEnabled = true;
+            IsUseAsIs.IsEnabled = true;
 
             IsProperty.IsChecked = true;
+            IsSnakeToPascal.IsChecked = true;
+
+            StickHere.ToolTip = MainWindowResources.EXAMPLE_DEFINITION;
+        }
+
+        /// <summary>
+        /// Single pattern click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsSinglePattern_Checked(object sender, RoutedEventArgs e)
+        {
+            if (IsSnakeToPascal.IsEnabled)
+            {
+                IsSnakeToPascal.IsEnabled = false;
+                IsUseAsIs.IsEnabled = false;
+
+                IsSnakeToPascal.IsChecked = false;
+                IsUseAsIs.IsChecked = false;
+            }
+        }
+
+        /// <summary>
+        /// Property and ViewModel click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsProperty_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsSnakeToPascal.IsEnabled)
+            {
+                IsSnakeToPascal.IsEnabled = true;
+                IsUseAsIs.IsEnabled = true;
+
+                IsSnakeToPascal.IsChecked = true;
+            }
         }
 
         /// <summary>
@@ -82,40 +126,31 @@ namespace EntityMaker
         {
             if (!ConvertSource.Text.HasValue()) return;
             var itemsSource = new ObservableCollection<ConvertGridRow>();
-            foreach (var value in ConvertSource.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None))
+            foreach (var row in ConvertSource.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None))
             {
-                if (!value.HasValue()) continue;
-                if (IsSnake.IsChecked.GetValue())
+                if (!row.HasValue()) continue;
+                if (IsNameOnly.IsChecked.GetValue())
                 {
                     var sourceCode = string.Empty;
                     if (IsPascal.IsChecked.GetValue())
-                        sourceCode = ConvertSnakeToPascal(value.ToLower());
+                        sourceCode = ConvertSnakeToPascal(row.ToLower());
                     else if (IsCamel.IsChecked.GetValue())
-                        sourceCode = ConvertPascalToCamel(ConvertSnakeToPascal(value.ToLower()));
+                        sourceCode = ConvertPascalToCamel(ConvertSnakeToPascal(row.ToLower()));
                     else if (IsLower.IsChecked.GetValue())
-                        sourceCode = value.ToLower();
+                        sourceCode = row.ToLower();
                     else if (IsUpper.IsChecked.GetValue())
-                        sourceCode = value.ToUpper();
+                        sourceCode = row.ToUpper();
                     else if (IsProperty.IsChecked.GetValue())
-                        sourceCode = ConvertProperty(ConvertSnakeToPascal(value.ToLower()));
+                        sourceCode = ConvertProperty(IsSnakeToPascal.IsChecked.GetValue() ? ConvertSnakeToPascal(row.ToLower()) : row);
 
                     itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
                 }
-                else if(IsUseAsIs.IsChecked.GetValue())
+                else if(IsDefinition.IsChecked.GetValue())
                 {
                     var sourceCode = string.Empty;
-                    if (IsLower.IsChecked.GetValue())
-                        sourceCode = value.ToLower();
-                    else if (IsUpper.IsChecked.GetValue())
-                        sourceCode = value.ToUpper();
-                    else if (IsProperty.IsChecked.GetValue())
-                        sourceCode = ConvertProperty(value);
-
-                    itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
-                }
-                else if(IsDef.IsChecked.GetValue())
-                {
+                    if (IsProperty.IsChecked.GetValue()) sourceCode = ConvertProperty(row.Split(','), IsSnakeToPascal.IsChecked.GetValue());
                     // Customize here for each project.
+                    if (sourceCode.HasValue()) itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
                     continue;
                 }
             }
@@ -139,6 +174,53 @@ namespace EntityMaker
         }
 
         /// <summary>
+        /// Converts a define to a property.
+        /// </summary>
+        /// <param name="values">Row values</param>
+        /// <param name="isSnakeToPascal">Convert from snake case to pascal case?</param>
+        /// <returns>Property</returns>
+        private string ConvertProperty(string[] values, bool isSnakeToPascal)
+        {
+            if (values.IsNull() || values.Length < 4) return string.Empty;
+            var logicalName = values[(int)DefIndex.LogicalName].Trim();
+            var prop = $"/// <summary>{Environment.NewLine}";
+            prop += $"/// {string.Format(MainWindowResources.GET_OR_SET, logicalName)}{Environment.NewLine}";
+            prop += $"/// </summary>{Environment.NewLine}";
+            var physicsName = isSnakeToPascal ? ConvertSnakeToPascal(values[(int)DefIndex.PhysicsName].Trim().ToLower()) : values[(int)DefIndex.PhysicsName].Trim();
+            var dataType = values[(int)DefIndex.DataType].Trim().ToLower();
+            var isNotNull = values[(int)DefIndex.NotNull].Trim().ToLower().Contains('y');
+            var nullable = isNotNull ? string.Empty : "?";
+            var initialize = string.Empty;
+            if (dataType.Contains("char") || dataType.Contains("text"))
+            {
+                dataType = "string";
+                nullable = string.Empty;
+                initialize = "string.Empty";
+            }
+            else if (nameof(SqlDbType.Int).ToLower() == dataType)
+            {
+                dataType = nameof(SqlDbType.Int).ToLower();
+                initialize = isNotNull ? "0" : "null";
+            }
+            else if (nameof(SqlDbType.Date).ToLower() == dataType || nameof(SqlDbType.DateTime).ToLower() == dataType)
+            {
+                dataType = nameof(SqlDbType.DateTime);
+                initialize = isNotNull ? "DateTime.MinValue" : "null";
+            }
+            else
+            {
+                dataType = string.Empty;
+            }
+
+            if (dataType.HasValue())
+                prop += $"public {dataType}{nullable} {physicsName} {{ get; set; }} = {initialize};{Environment.NewLine}";
+            else
+                prop = string.Empty;
+
+            return prop;
+        }
+
+        /// <summary>
         /// Clear button click event
         /// </summary>
         /// <param name="sender"></param>
@@ -152,9 +234,15 @@ namespace EntityMaker
         /// </summary>
         private void Clear()
         {
-            IsSnake.IsChecked = true;
+            IsNameOnly.IsChecked = true;
             IsPascal.IsChecked = true;
+            IsSnakeToPascal.IsChecked = false;
+            IsUseAsIs.IsChecked = false;
+
             IsViewModel.IsEnabled = false;
+            IsSnakeToPascal.IsEnabled = false;
+            IsUseAsIs.IsEnabled = false;
+
             ConvertSource.Text = string.Empty;
             AfterConvert.ItemsSource = null;
         }
@@ -194,6 +282,7 @@ namespace EntityMaker
             /// <summary>source code</summary>
             public string SourceCode { get; set; } = string.Empty;
         }
+
         #endregion
     }
 }
