@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EntityMaker"
         xmlns:resx="clr-namespace:EntityMaker.Properties"
         mc:Ignorable="d"
-        Width="1500" Height="800" FontSize="14" Title="{x:Static resx:MainWindowResources.TITLE}" Background="#E0FFFF" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Width="1500" Height="800" FontSize="14" Title="{x:Static resx:Resources.TITLE}" Background="#E0FFFF" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <ControlTemplate x:Key="DefaultButton" TargetType="Button">
             <Border Name="Border"
@@ -42,41 +42,41 @@
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <GroupBox Header="{x:Static resx:MainWindowResources.CONVERSION_SOURCE}" Margin="0,5,5,0">
+            <GroupBox Header="{x:Static resx:Resources.CONVERSION_SOURCE}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton x:Name="IsTextBox" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.TEXT_BOX}" Checked="IsTextBox_Checked"/>
-                    <RadioButton x:Name="IsExcel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.EXCEL}" Checked="IsExcel_Checked"/>
+                    <RadioButton x:Name="IsTextBox" Margin="5,0,5,0" Content="{x:Static resx:Resources.TEXT_BOX}" Checked="IsTextBox_Checked"/>
+                    <RadioButton x:Name="IsExcel" Margin="5,0,5,0" Content="{x:Static resx:Resources.EXCEL}" Checked="IsExcel_Checked"/>
                 </StackPanel>
             </GroupBox>
             <TextBox x:Name="FilePath" Margin="0,16,0,0" Height="23" Width="743" IsReadOnly="True" Background="#DCDCDC"/>
-            <Button x:Name="FileOpen" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:MainWindowResources.SELECT_FILE}" Click="FileOpen_Click"/>
-            <Button x:Name="DefineExcel" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:MainWindowResources.DEFINE_EXCEL}" Click="DefineExcel_Click"/>
+            <Button x:Name="FileOpen" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:Resources.SELECT_FILE}" Click="FileOpen_Click"/>
+            <Button x:Name="DefineExcel" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:Resources.DEFINE_EXCEL}" Click="DefineExcel_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-            <GroupBox Header="{x:Static resx:MainWindowResources.PASTE_TYPE}" Margin="0,5,5,0">
+            <GroupBox Header="{x:Static resx:Resources.PASTE_TYPE}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton x:Name="IsNameOnly" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.NAME_ONLY}" Checked="IsNameOnly_Checked"/>
-                    <RadioButton x:Name="IsDefinition" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.DEFINITION}" Checked="IsDefinition_Checked"/>
+                    <RadioButton x:Name="IsNameOnly" Margin="5,0,5,0" Content="{x:Static resx:Resources.NAME_ONLY}" Checked="IsNameOnly_Checked"/>
+                    <RadioButton x:Name="IsDefinition" Margin="5,0,5,0" Content="{x:Static resx:Resources.DEFINITION}" Checked="IsDefinition_Checked"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="{x:Static resx:MainWindowResources.CONVERSION_PATTERN}" Margin="0,5,5,0">
+            <GroupBox Header="{x:Static resx:Resources.CONVERSION_PATTERN}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton x:Name="IsPascal" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.PASCAL}" Checked="IsSinglePattern_Checked"/>
-                    <RadioButton x:Name="IsCamel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.CAMEL}" Checked="IsSinglePattern_Checked"/>
-                    <RadioButton x:Name="IsLower" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.LOWER_CASE}" Checked="IsSinglePattern_Checked"/>
-                    <RadioButton x:Name="IsUpper" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.UPPER_CASE}" Checked="IsSinglePattern_Checked"/>
-                    <RadioButton x:Name="IsProperty" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.PROPERTY}" Checked="IsProperty_Checked"/>
-                    <RadioButton x:Name="IsViewModel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.VIEW_MODEL}" Checked="IsProperty_Checked"/>
+                    <RadioButton x:Name="IsPascal" Margin="5,0,5,0" Content="{x:Static resx:Resources.PASCAL}" Checked="IsSinglePattern_Checked"/>
+                    <RadioButton x:Name="IsCamel" Margin="5,0,5,0" Content="{x:Static resx:Resources.CAMEL}" Checked="IsSinglePattern_Checked"/>
+                    <RadioButton x:Name="IsLower" Margin="5,0,5,0" Content="{x:Static resx:Resources.LOWER_CASE}" Checked="IsSinglePattern_Checked"/>
+                    <RadioButton x:Name="IsUpper" Margin="5,0,5,0" Content="{x:Static resx:Resources.UPPER_CASE}" Checked="IsSinglePattern_Checked"/>
+                    <RadioButton x:Name="IsProperty" Margin="5,0,5,0" Content="{x:Static resx:Resources.PROPERTY}" Checked="IsProperty_Checked"/>
+                    <RadioButton x:Name="IsViewModel" Margin="5,0,5,0" Content="{x:Static resx:Resources.VIEW_MODEL}" Checked="IsProperty_Checked"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="{x:Static resx:MainWindowResources.PROPERTY_NAME}" Margin="0,5,5,0">
+            <GroupBox Header="{x:Static resx:Resources.PROPERTY_NAME}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton x:Name="IsSnakeToPascal" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.SNAKE_TO_PASCAL}"/>
-                    <RadioButton x:Name="IsUseAsIs" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.USE_AS_IS}"/>
+                    <RadioButton x:Name="IsSnakeToPascal" Margin="5,0,5,0" Content="{x:Static resx:Resources.SNAKE_TO_PASCAL}"/>
+                    <RadioButton x:Name="IsUseAsIs" Margin="5,0,5,0" Content="{x:Static resx:Resources.USE_AS_IS}"/>
                 </StackPanel>
             </GroupBox>
-            <Button x:Name="Make" Width="150" HorizontalAlignment="Left" Margin="0,16,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.MAKE}" Click="Make_Click"/>
-            <Button x:Name="ClearValue" Width="150" HorizontalAlignment="Left" Margin="0,16,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.CLEAR}" Click="ClearValue_Click"/>
+            <Button x:Name="Make" Width="150" HorizontalAlignment="Left" Margin="0,16,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.MAKE}" Click="Make_Click"/>
+            <Button x:Name="ClearValue" Width="150" HorizontalAlignment="Left" Margin="0,16,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.CLEAR}" Click="ClearValue_Click"/>
         </StackPanel>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -89,7 +89,7 @@
                     <RowDefinition Height="27"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" x:Name="StickHere" Margin="2,0,0,0" VerticalAlignment="Center" Text="{x:Static resx:MainWindowResources.STICK_HERE}"/>
+                <TextBlock Grid.Row="0" x:Name="StickHere" Margin="2,0,0,0" VerticalAlignment="Center" Text="{x:Static resx:Resources.STICK_HERE}"/>
                 <TextBox Grid.Row="1" x:Name="ConvertSource" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
             </Grid>
             <DataGrid Grid.Column="2"
@@ -103,7 +103,7 @@
                       GridLinesVisibility="None"
                       Background="#FFFFFF">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static resx:MainWindowResources.AFTER_CONVERSION}" Binding="{Binding SourceCode}" Width="*"/>
+                    <DataGridTextColumn Header="{x:Static resx:Resources.AFTER_CONVERSION}" Binding="{Binding SourceCode}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -22,14 +22,14 @@ namespace EntityMaker.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindowResources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindowResources() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EntityMaker.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.MainWindowResources", typeof(MainWindowResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,6 +106,24 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Logical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DATA_TYPE {
+            get {
+                return ResourceManager.GetString("DATA_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Definition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEF {
+            get {
+                return ResourceManager.GetString("DEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save Definition Excel に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DEFINE_EXCEL {
@@ -161,11 +179,29 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Excel Bool (*.xlsx)|*.xlsx に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXCEL_EXTENSION_FILTER {
+            get {
+                return ResourceManager.GetString("EXCEL_EXTENSION_FILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Get or set {0}. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string GET_OR_SET {
             get {
                 return ResourceManager.GetString("GET_OR_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Physical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LOGICAL_NAME {
+            get {
+                return ResourceManager.GetString("LOGICAL_NAME", resourceCulture);
             }
         }
         
@@ -179,7 +215,7 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   M a k e に類似しているローカライズされた文字列を検索します。
+        ///   Make に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MAKE {
             get {
@@ -224,6 +260,15 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Data Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PHYSICAL_NAME {
+            get {
+                return ResourceManager.GetString("PHYSICAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Property に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PROPERTY {
@@ -238,6 +283,15 @@ namespace EntityMaker.Properties {
         public static string PROPERTY_NAME {
             get {
                 return ResourceManager.GetString("PROPERTY_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Required に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string REQUIRED {
+            get {
+                return ResourceManager.GetString("REQUIRED", resourceCulture);
             }
         }
         
