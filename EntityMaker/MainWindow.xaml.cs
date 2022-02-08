@@ -4,7 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using ClosedXML.Excel;
 using EntityMaker.Properties;
+using Microsoft.Win32;
 
 namespace EntityMaker
 {
@@ -22,7 +24,7 @@ namespace EntityMaker
             LogicalName,
             PhysicsName,
             DataType,
-            NotNull
+            Required
         }
             
         #endregion
@@ -77,7 +79,7 @@ namespace EntityMaker
         /// <param name="e"></param>
         private void FileOpen_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new Microsoft.Win32.OpenFileDialog();
+            var dialog = new OpenFileDialog();
             dialog.Filter = "Excelブック (*.xlsx)|*.xlsx";
             if (dialog.ShowDialog().GetValue()) FilePath.Text = dialog.FileName;
         }
@@ -89,7 +91,15 @@ namespace EntityMaker
         /// <param name="e"></param>
         private void DefineExcel_Click(object sender, RoutedEventArgs e)
         {
+            using (var book = new XLWorkbook())
+            {
+                book.AddWorksheet(ExcelResources.DEF);
 
+                var dialog = new SaveFileDialog();
+                dialog.FileName = $"{ExcelResources.DEF}.xlsx";
+                if (dialog.ShowDialog().GetValue()) book.SaveAs(dialog.FileName);
+            }
+                
         }
 
         /// <summary>
@@ -246,8 +256,8 @@ namespace EntityMaker
             prop += $"/// </summary>{Environment.NewLine}";
             var physicsName = isSnakeToPascal ? ConvertSnakeToPascal(values[(int)DefIndex.PhysicsName].Trim().ToLower()) : values[(int)DefIndex.PhysicsName].Trim();
             var dataType = values[(int)DefIndex.DataType].Trim().ToLower();
-            var isNotNull = values[(int)DefIndex.NotNull].Trim().ToLower().Contains('y');
-            var nullable = isNotNull ? string.Empty : "?";
+            var required = values[(int)DefIndex.Required].Trim().ToLower().Contains('y');
+            var nullable = required ? string.Empty : "?";
             var initialize = string.Empty;
             if (dataType.Contains("char") || dataType.Contains("text"))
             {
@@ -258,12 +268,12 @@ namespace EntityMaker
             else if (nameof(SqlDbType.Int).ToLower() == dataType)
             {
                 dataType = nameof(SqlDbType.Int).ToLower();
-                initialize = isNotNull ? "0" : "null";
+                initialize = required ? "0" : "null";
             }
             else if (nameof(SqlDbType.Date).ToLower() == dataType || nameof(SqlDbType.DateTime).ToLower() == dataType)
             {
                 dataType = nameof(SqlDbType.DateTime);
-                initialize = isNotNull ? "DateTime.MinValue" : "null";
+                initialize = required ? "DateTime.MinValue" : "null";
             }
             else
             {

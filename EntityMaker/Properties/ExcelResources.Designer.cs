@@ -22,24 +22,24 @@ namespace EntityMaker.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources___コピー {
+    public class ExcelResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources___コピー() {
+        internal ExcelResources() {
         }
         
         /// <summary>
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.AppResources - コピー", typeof(AppResources___コピー).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.ExcelResources", typeof(ExcelResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,12 +51,66 @@ namespace EntityMaker.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Logical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DATA_TYPE {
+            get {
+                return ResourceManager.GetString("DATA_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Definition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEF {
+            get {
+                return ResourceManager.GetString("DEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Excel Bool (*.xlsx)|*.xlsx に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXCEL_EXTENSION_FILTER {
+            get {
+                return ResourceManager.GetString("EXCEL_EXTENSION_FILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Physical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LOGICAL_NAME {
+            get {
+                return ResourceManager.GetString("LOGICAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Data Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PHYSICAL_NAME {
+            get {
+                return ResourceManager.GetString("PHYSICAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Required に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string REQUIRED {
+            get {
+                return ResourceManager.GetString("REQUIRED", resourceCulture);
             }
         }
     }

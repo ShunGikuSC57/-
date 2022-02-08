@@ -14,27 +14,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\MainWindowResources.ja.Designer.cs">
-      <DependentUpon>MainWindowResources.ja.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\MainWindowResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MainWindowResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\ExcelResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExcelResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\MainWindowResources.ja.resx">
-      <LastGenOutput>MainWindowResources.ja.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Properties\MainWindowResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\ExcelResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExcelResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
