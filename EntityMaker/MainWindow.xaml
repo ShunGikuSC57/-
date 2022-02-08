@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EntityMaker"
         xmlns:resx="clr-namespace:EntityMaker.Properties"
         mc:Ignorable="d"
-        Width="1200" Height="700" Title="{x:Static resx:MainWindowResources.TITLE}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Width="1500" Height="800" FontSize="14" Title="{x:Static resx:MainWindowResources.TITLE}" Background="#E0FFFF" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <ControlTemplate x:Key="DefaultButton" TargetType="Button">
             <Border Name="Border"
@@ -18,10 +18,11 @@
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="Border" Property="Background" Value="#A9A9A9"/>
+                    <Setter TargetName="Border" Property="Background" Value="#AFEEEE"/>
+                    <Setter TargetName="Border" Property="BorderBrush" Value="#008B8B"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="Border" Property="Background" Value="#808080"/>
+                    <Setter TargetName="Border" Property="Background" Value="#008B8B"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -29,18 +30,29 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="817*"/>
-            <ColumnDefinition Width="99*"/>
-            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="46"/>
+            <RowDefinition Height="52"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="52"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <GroupBox Header="{x:Static resx:MainWindowResources.CONVERSION_SOURCE}" Margin="0,5,5,0">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="IsTextBox" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.TEXT_BOX}" Checked="IsTextBox_Checked"/>
+                    <RadioButton x:Name="IsExcel" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.EXCEL}" Checked="IsExcel_Checked"/>
+                </StackPanel>
+            </GroupBox>
+            <TextBox x:Name="FilePath" Margin="0,16,0,0" Height="23" Width="743" IsReadOnly="True" Background="#DCDCDC"/>
+            <Button x:Name="FileOpen" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:MainWindowResources.SELECT_FILE}" Click="FileOpen_Click"/>
+            <Button x:Name="DefineExcel" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:MainWindowResources.DEFINE_EXCEL}" Click="DefineExcel_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <GroupBox Header="{x:Static resx:MainWindowResources.PASTE_TYPE}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal">
                     <RadioButton x:Name="IsNameOnly" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.NAME_ONLY}" Checked="IsNameOnly_Checked"/>
@@ -63,26 +75,26 @@
                     <RadioButton x:Name="IsUseAsIs" Margin="5,0,5,0" Content="{x:Static resx:MainWindowResources.USE_AS_IS}"/>
                 </StackPanel>
             </GroupBox>
-            <Button x:Name="Make" Width="60" HorizontalAlignment="Left" Margin="0,14,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.MAKE}" Click="Make_Click"/>
-            <Button x:Name="ClearValue" Width="60" HorizontalAlignment="Left" Margin="0,14,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.CLEAR}" Click="ClearValue_Click"/>
+            <Button x:Name="Make" Width="150" HorizontalAlignment="Left" Margin="0,16,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.MAKE}" Click="Make_Click"/>
+            <Button x:Name="ClearValue" Width="150" HorizontalAlignment="Left" Margin="0,16,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:MainWindowResources.CLEAR}" Click="ClearValue_Click"/>
         </StackPanel>
-        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+        <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.7*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="27"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" x:Name="StickHere" Text="{x:Static resx:MainWindowResources.STICK_HERE}"/>
-                <TextBox Grid.Row="2" x:Name="ConvertSource" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
+                <TextBlock Grid.Row="0" x:Name="StickHere" Margin="2,0,0,0" VerticalAlignment="Center" Text="{x:Static resx:MainWindowResources.STICK_HERE}"/>
+                <TextBox Grid.Row="1" x:Name="ConvertSource" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
             </Grid>
             <DataGrid Grid.Column="2"
                       x:Name="AfterConvert"
+                      CanUserSortColumns="False"
                       HeadersVisibility="Column"
                       AutoGenerateColumns="False"
                       SelectionUnit="Cell"

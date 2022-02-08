@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AFTER_CONVERSION" xml:space="preserve">
-    <value>返還後</value>
+    <value>変換後</value>
   </data>
   <data name="CAMEL" xml:space="preserve">
     <value>キャメル</value>
@@ -128,6 +128,12 @@
   </data>
   <data name="CONVERSION_PATTERN" xml:space="preserve">
     <value>変換パターン</value>
+  </data>
+  <data name="CONVERSION_SOURCE" xml:space="preserve">
+    <value>変換元</value>
+  </data>
+  <data name="DEFINE_EXCEL" xml:space="preserve">
+    <value>定義Excelを表示</value>
   </data>
   <data name="DEFINITION" xml:space="preserve">
     <value>定義</value>
@@ -148,6 +154,9 @@ ROLE_ID
 CREATED_AT
 UPDATED_AT</value>
   </data>
+  <data name="EXCEL" xml:space="preserve">
+    <value>Excel</value>
+  </data>
   <data name="GET_OR_SET" xml:space="preserve">
     <value>{0}を取得または設定します。</value>
   </data>
@@ -159,6 +168,9 @@ UPDATED_AT</value>
   </data>
   <data name="NAME_ONLY" xml:space="preserve">
     <value>名称のみ</value>
+  </data>
+  <data name="OPEN_FILE" xml:space="preserve">
+    <value>ファイルを開く</value>
   </data>
   <data name="PASCAL" xml:space="preserve">
     <value>パスカル</value>
@@ -172,11 +184,17 @@ UPDATED_AT</value>
   <data name="PROPERTY_NAME" xml:space="preserve">
     <value>プロパティ名</value>
   </data>
+  <data name="SELECT_FILE" xml:space="preserve">
+    <value>ファイルを選択する</value>
+  </data>
   <data name="SNAKE_TO_PASCAL" xml:space="preserve">
     <value>スネーク から パスカル</value>
   </data>
   <data name="STICK_HERE" xml:space="preserve">
     <value>ここに張り付けてください！（記入例はツールチップをみてください）</value>
+  </data>
+  <data name="TEXT_BOX" xml:space="preserve">
+    <value>TextBox</value>
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>エンティティつく～る</value>

@@ -129,6 +129,12 @@
   <data name="CONVERSION_PATTERN" xml:space="preserve">
     <value>Conversion pattern</value>
   </data>
+  <data name="CONVERSION_SOURCE" xml:space="preserve">
+    <value>Conversion source</value>
+  </data>
+  <data name="DEFINE_EXCEL" xml:space="preserve">
+    <value>View Definition Excel</value>
+  </data>
   <data name="DEFINITION" xml:space="preserve">
     <value>Definition</value>
   </data>
@@ -148,6 +154,9 @@ ROLE_ID
 CREATED_AT
 UPDATED_AT</value>
   </data>
+  <data name="EXCEL" xml:space="preserve">
+    <value>Excel</value>
+  </data>
   <data name="GET_OR_SET" xml:space="preserve">
     <value>Get or set {0}.</value>
   </data>
@@ -159,6 +168,9 @@ UPDATED_AT</value>
   </data>
   <data name="NAME_ONLY" xml:space="preserve">
     <value>Name only</value>
+  </data>
+  <data name="OPEN_FILE" xml:space="preserve">
+    <value>Open file</value>
   </data>
   <data name="PASCAL" xml:space="preserve">
     <value>Pascal</value>
@@ -172,11 +184,17 @@ UPDATED_AT</value>
   <data name="PROPERTY_NAME" xml:space="preserve">
     <value>Property Name</value>
   </data>
+  <data name="SELECT_FILE" xml:space="preserve">
+    <value>Select  file</value>
+  </data>
   <data name="SNAKE_TO_PASCAL" xml:space="preserve">
     <value>Snake to Pascal</value>
   </data>
   <data name="STICK_HERE" xml:space="preserve">
     <value>Stick it up here! (See the tooltip for an example)</value>
+  </data>
+  <data name="TEXT_BOX" xml:space="preserve">
+    <value>TextBox</value>
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>Entity Create</value>

@@ -97,6 +97,24 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Conversion source に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CONVERSION_SOURCE {
+            get {
+                return ResourceManager.GetString("CONVERSION_SOURCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   View Definition Excel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEFINE_EXCEL {
+            get {
+                return ResourceManager.GetString("DEFINE_EXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Definition に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DEFINITION {
@@ -130,6 +148,15 @@ namespace EntityMaker.Properties {
         public static string EXAMPLE_NAME_ONLY {
             get {
                 return ResourceManager.GetString("EXAMPLE_NAME_ONLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Excel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXCEL {
+            get {
+                return ResourceManager.GetString("EXCEL", resourceCulture);
             }
         }
         
@@ -170,6 +197,15 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Open file に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OPEN_FILE {
+            get {
+                return ResourceManager.GetString("OPEN_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pascal に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PASCAL {
@@ -206,6 +242,15 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Select  file に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SELECT_FILE {
+            get {
+                return ResourceManager.GetString("SELECT_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Snake to Pascal に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SNAKE_TO_PASCAL {
@@ -220,6 +265,15 @@ namespace EntityMaker.Properties {
         public static string STICK_HERE {
             get {
                 return ResourceManager.GetString("STICK_HERE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TextBox に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TEXT_BOX {
+            get {
+                return ResourceManager.GetString("TEXT_BOX", resourceCulture);
             }
         }
         

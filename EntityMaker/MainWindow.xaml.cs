@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using EntityMaker.Properties;
 
 namespace EntityMaker
@@ -40,6 +41,56 @@ namespace EntityMaker
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e) => Clear();
+
+        /// <summary>
+        /// TextBox check event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsTextBox_Checked(object sender, RoutedEventArgs e)
+        {
+            FileOpen.IsEnabled = false;
+            DefineExcel.IsEnabled = false;
+            ConvertSource.IsReadOnly = false;
+            ConvertSource.Background = Brushes.White;
+
+            FilePath.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Excel check event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsExcel_Checked(object sender, RoutedEventArgs e)
+        {
+            FileOpen.IsEnabled = true;
+            DefineExcel.IsEnabled = true;
+            ConvertSource.IsReadOnly = true;
+            ConvertSource.Background = Brushes.Silver;
+        }
+
+        /// <summary>
+        /// Select file click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.Filter = "Excelブック (*.xlsx)|*.xlsx";
+            if (dialog.ShowDialog().GetValue()) FilePath.Text = dialog.FileName;
+        }
+
+        /// <summary>
+        /// View Definition Excel click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DefineExcel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         /// <summary>
         /// Name Only check event
@@ -124,35 +175,41 @@ namespace EntityMaker
         /// <param name="e"></param>
         private void Make_Click(object sender, RoutedEventArgs e)
         {
-            if (!ConvertSource.Text.HasValue()) return;
             var itemsSource = new ObservableCollection<ConvertGridRow>();
-            foreach (var row in ConvertSource.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None))
+            if (IsTextBox.IsChecked.GetValue())
             {
-                if (!row.HasValue()) continue;
-                if (IsNameOnly.IsChecked.GetValue())
+                if (!ConvertSource.Text.HasValue()) return;
+                foreach (var row in ConvertSource.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None))
                 {
-                    var sourceCode = string.Empty;
-                    if (IsPascal.IsChecked.GetValue())
-                        sourceCode = ConvertSnakeToPascal(row.ToLower());
-                    else if (IsCamel.IsChecked.GetValue())
-                        sourceCode = ConvertPascalToCamel(ConvertSnakeToPascal(row.ToLower()));
-                    else if (IsLower.IsChecked.GetValue())
-                        sourceCode = row.ToLower();
-                    else if (IsUpper.IsChecked.GetValue())
-                        sourceCode = row.ToUpper();
-                    else if (IsProperty.IsChecked.GetValue())
-                        sourceCode = ConvertProperty(IsSnakeToPascal.IsChecked.GetValue() ? ConvertSnakeToPascal(row.ToLower()) : row);
+                    if (!row.HasValue()) continue;
+                    if (IsNameOnly.IsChecked.GetValue())
+                    {
+                        var sourceCode = string.Empty;
+                        if (IsPascal.IsChecked.GetValue())
+                            sourceCode = ConvertSnakeToPascal(row.ToLower());
+                        else if (IsCamel.IsChecked.GetValue())
+                            sourceCode = ConvertPascalToCamel(ConvertSnakeToPascal(row.ToLower()));
+                        else if (IsLower.IsChecked.GetValue())
+                            sourceCode = row.ToLower();
+                        else if (IsUpper.IsChecked.GetValue())
+                            sourceCode = row.ToUpper();
+                        else if (IsProperty.IsChecked.GetValue())
+                            sourceCode = ConvertProperty(IsSnakeToPascal.IsChecked.GetValue() ? ConvertSnakeToPascal(row.ToLower()) : row);
 
-                    itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
+                        itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
+                    }
+                    else if (IsDefinition.IsChecked.GetValue())
+                    {
+                        var sourceCode = string.Empty;
+                        if (IsProperty.IsChecked.GetValue()) sourceCode = ConvertProperty(row.Split(','), IsSnakeToPascal.IsChecked.GetValue());
+                        // Customize here for each project.
+                        if (sourceCode.HasValue()) itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
+                        continue;
+                    }
                 }
-                else if(IsDefinition.IsChecked.GetValue())
-                {
-                    var sourceCode = string.Empty;
-                    if (IsProperty.IsChecked.GetValue()) sourceCode = ConvertProperty(row.Split(','), IsSnakeToPascal.IsChecked.GetValue());
-                    // Customize here for each project.
-                    if (sourceCode.HasValue()) itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
-                    continue;
-                }
+            }
+            else if (IsExcel.IsChecked.GetValue())
+            {
 
             }
 
@@ -235,15 +292,15 @@ namespace EntityMaker
         /// </summary>
         private void Clear()
         {
-            IsNameOnly.IsChecked = true;
-            IsPascal.IsChecked = true;
-            IsSnakeToPascal.IsChecked = false;
-            IsUseAsIs.IsChecked = false;
-
             IsViewModel.IsEnabled = false;
             IsSnakeToPascal.IsEnabled = false;
             IsUseAsIs.IsEnabled = false;
 
+            IsTextBox.IsChecked = true;
+            IsNameOnly.IsChecked = true;
+            IsPascal.IsChecked = true;
+            IsSnakeToPascal.IsChecked = false;
+            IsUseAsIs.IsChecked = false;
             ConvertSource.Text = string.Empty;
             AfterConvert.ItemsSource = null;
         }
@@ -283,7 +340,6 @@ namespace EntityMaker
             /// <summary>source code</summary>
             public string SourceCode { get; set; } = string.Empty;
         }
-
         #endregion
     }
 }
