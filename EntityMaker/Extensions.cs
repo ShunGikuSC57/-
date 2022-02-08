@@ -13,26 +13,26 @@ namespace EntityMaker
     {
         #region Generic
         /// <summary>
-        /// そのオブジェクトがnullかどうかを判定します。
+        /// Determines whether the object is null or not.
         /// </summary>
-        /// <param name="obj">対象オブジェクト</param>
-        /// <returns>null:true nullじゃない:false</returns>
+        /// <param name="obj">target object</param>
+        /// <returns>null:true not null:false</returns>
         public static bool IsNull<T>(this T target) => target == null;
 
         /// <summary>
-        /// そのオブジェクトがnull以外かどうかを判定します。
+        /// Determines if the object is non-null.
         /// </summary>
-        /// <param name="obj">対象オブジェクト</param>
-        /// <returns>nullじゃない:true null:false</returns>
+        /// <param name="obj">target object</param>
+        /// <returns>Not null: true null: false</returns>
         public static bool IsNotNull<T>(this T target) => target != null;
         #endregion
 
         #region String
         /// <summary>
-        /// 文字列に値が存在するか検証し結果を返却します。
+        /// Verifies the existence of a value in a string and returns the result.
         /// </summary>
-        /// <param name="str">対象文字列</param>
-        /// <returns>値あり:true Null、空文字、空白のみ:false</returns>
+        /// <param name="str">target string</param>
+        /// <returns>With value: true Null, empty, space only: false</returns>
         public static bool HasValue(this string str) => !string.IsNullOrWhiteSpace(str);
 
         /// <summary>

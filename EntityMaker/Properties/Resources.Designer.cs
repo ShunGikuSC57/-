@@ -22,14 +22,14 @@ namespace EntityMaker.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindowResources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindowResources() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EntityMaker.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.MainWindowResources", typeof(MainWindowResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EntityMaker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,15 +66,6 @@ namespace EntityMaker.Properties {
         public static string AFTER_CONVERSION {
             get {
                 return ResourceManager.GetString("AFTER_CONVERSION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   By definition に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string BY_DEFINITION {
-            get {
-                return ResourceManager.GetString("BY_DEFINITION", resourceCulture);
             }
         }
         
@@ -106,6 +97,115 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Conversion source に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CONVERSION_SOURCE {
+            get {
+                return ResourceManager.GetString("CONVERSION_SOURCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Logical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DATA_TYPE {
+            get {
+                return ResourceManager.GetString("DATA_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Definition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEF {
+            get {
+                return ResourceManager.GetString("DEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Save Definition Excel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEFINE_EXCEL {
+            get {
+                return ResourceManager.GetString("DEFINE_EXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Definition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DEFINITION {
+            get {
+                return ResourceManager.GetString("DEFINITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Column ID,COLUMN_ID,char(n),Yes
+        ///Column name,COLUMN_NAME,nvarchar(n),Y
+        ///User password,USER_PASSWORD,text,No
+        ///Role ID,ROLE_ID,int,N
+        ///Creation date and time,CREATED_AT,date,
+        ///updated_date,UPDATED_AT,datetime, に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXAMPLE_DEFINITION {
+            get {
+                return ResourceManager.GetString("EXAMPLE_DEFINITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   COLUMN_ID
+        ///COLUMN_NAME
+        ///USER_PASSWORD
+        ///ROLE_ID
+        ///CREATED_AT
+        ///UPDATED_AT に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXAMPLE_NAME_ONLY {
+            get {
+                return ResourceManager.GetString("EXAMPLE_NAME_ONLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Excel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXCEL {
+            get {
+                return ResourceManager.GetString("EXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Excel Bool (*.xlsx)|*.xlsx に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EXCEL_EXTENSION_FILTER {
+            get {
+                return ResourceManager.GetString("EXCEL_EXTENSION_FILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Get or set {0}. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GET_OR_SET {
+            get {
+                return ResourceManager.GetString("GET_OR_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Physical name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LOGICAL_NAME {
+            get {
+                return ResourceManager.GetString("LOGICAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   lower case letters に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LOWER_CASE {
@@ -115,11 +215,29 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   M a k e に類似しているローカライズされた文字列を検索します。
+        ///   Make に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MAKE {
             get {
                 return ResourceManager.GetString("MAKE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Name only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NAME_ONLY {
+            get {
+                return ResourceManager.GetString("NAME_ONLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open file に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OPEN_FILE {
+            get {
+                return ResourceManager.GetString("OPEN_FILE", resourceCulture);
             }
         }
         
@@ -142,6 +260,15 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
+        ///   Data Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PHYSICAL_NAME {
+            get {
+                return ResourceManager.GetString("PHYSICAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Property に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PROPERTY {
@@ -151,20 +278,56 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   Snake case に類似しているローカライズされた文字列を検索します。
+        ///   Property Name に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string SNAKE {
+        public static string PROPERTY_NAME {
             get {
-                return ResourceManager.GetString("SNAKE", resourceCulture);
+                return ResourceManager.GetString("PROPERTY_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Stick it here! に類似しているローカライズされた文字列を検索します。
+        ///   Required に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string REQUIRED {
+            get {
+                return ResourceManager.GetString("REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select  file に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SELECT_FILE {
+            get {
+                return ResourceManager.GetString("SELECT_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Snake to Pascal に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SNAKE_TO_PASCAL {
+            get {
+                return ResourceManager.GetString("SNAKE_TO_PASCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stick it up here! (See the tooltip for an example) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string STICK_HERE {
             get {
                 return ResourceManager.GetString("STICK_HERE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TextBox に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TEXT_BOX {
+            get {
+                return ResourceManager.GetString("TEXT_BOX", resourceCulture);
             }
         }
         
