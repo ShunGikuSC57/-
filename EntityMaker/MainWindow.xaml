@@ -76,7 +76,7 @@
                 </StackPanel>
             </GroupBox>
             <Button x:Name="Make" Width="150" HorizontalAlignment="Left" Margin="0,16,5,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.MAKE}" Click="Make_Click"/>
-            <Button x:Name="ClearValue" Width="150" HorizontalAlignment="Left" Margin="0,16,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.CLEAR}" Click="ClearValue_Click"/>
+            <Button x:Name="ClearControl" Width="150" HorizontalAlignment="Left" Margin="0,16,0,1" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.CLEAR}" Click="ClearControl_Click"/>
         </StackPanel>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
