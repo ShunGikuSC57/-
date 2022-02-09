@@ -99,7 +99,7 @@ namespace EntityMaker
         private void FileOpen_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
-            dialog.Filter = "Excelブック (*.xlsx)|*.xlsx";
+            dialog.Filter = Properties.Resources.EXCEL_EXTENSION_FILTER;
             if (dialog.ShowDialog().GetValue())
                 FilePath.Text = dialog.FileName;
         }
@@ -114,13 +114,14 @@ namespace EntityMaker
             using (var book = new XLWorkbook())
             {
                 var sheet = book.AddWorksheet(Properties.Resources.DEF);
-                sheet.Cell(1, 1).SetValue(Properties.Resources.LOGICAL_NAME);
-                sheet.Cell(1, 2).SetValue(Properties.Resources.PHYSICAL_NAME);
-                sheet.Cell(1, 3).SetValue(Properties.Resources.DATA_TYPE);
-                sheet.Cell(1, 4).SetValue(Properties.Resources.REQUIRED);
+                sheet.Cell(1, (int)DefExcelIndex.LogicalName).SetValue(Properties.Resources.LOGICAL_NAME);
+                sheet.Cell(1, (int)DefExcelIndex.PhysicsName).SetValue(Properties.Resources.PHYSICAL_NAME);
+                sheet.Cell(1, (int)DefExcelIndex.DataType).SetValue(Properties.Resources.DATA_TYPE);
+                sheet.Cell(1, (int)DefExcelIndex.Required).SetValue(Properties.Resources.REQUIRED);
 
                 var dialog = new SaveFileDialog();
                 dialog.FileName = $"{Properties.Resources.DEF}.xlsx";
+                dialog.Filter = Properties.Resources.EXCEL_EXTENSION_FILTER;
                 if (dialog.ShowDialog().GetValue())
                     book.SaveAs(dialog.FileName);
             }
@@ -252,23 +253,33 @@ namespace EntityMaker
             {
                 if (!FilePath.Text.HasValue()) return;
                 if (!System.IO.File.Exists(FilePath.Text)) return;
-                using (var book = new XLWorkbook(FilePath.Text))
+                try
                 {
-                    var sheet = book.Worksheet(Properties.Resources.DEF);
-                    if (sheet.IsNull()) return;
-                    var last = sheet.LastRowUsed().RowNumber();
-                    for (int i = 2; i <= last; i++)
+                    using (var book = new XLWorkbook(FilePath.Text))
                     {
-                        var logicalName = sheet.Cell(i, (int)DefExcelIndex.LogicalName).GetValue<string>();
-                        var physicsName = sheet.Cell(i, (int)DefExcelIndex.PhysicsName).GetValue<string>();
-                        var dataType = sheet.Cell(i, (int)DefExcelIndex.DataType).GetValue<string>();
-                        var required = sheet.Cell(i, (int)DefExcelIndex.Required).GetValue<string>();
-                        if (!logicalName.HasValue() || !physicsName.HasValue() || !dataType.HasValue()) return;
-                        var sourceCode = ConvertProperty(new string[] { logicalName, physicsName, dataType, required }, IsSnakeToPascal.IsChecked.GetValue(), IsViewModel.IsChecked.GetValue());
+                        var sheet = book.Worksheet(Properties.Resources.DEF);
+                        if (sheet.IsNull()) return;
+                        var last = sheet.LastRowUsed().RowNumber();
+                        for (int i = 2; i <= last; i++)
+                        {
+                            var logicalName = sheet.Cell(i, (int)DefExcelIndex.LogicalName).GetValue<string>();
+                            var physicsName = sheet.Cell(i, (int)DefExcelIndex.PhysicsName).GetValue<string>();
+                            var dataType = sheet.Cell(i, (int)DefExcelIndex.DataType).GetValue<string>();
+                            var required = sheet.Cell(i, (int)DefExcelIndex.Required).GetValue<string>();
+                            if (!logicalName.HasValue() || !physicsName.HasValue() || !dataType.HasValue()) return;
+                            var sourceCode = ConvertProperty(
+                                new string[] { logicalName, physicsName, dataType, required },
+                                IsSnakeToPascal.IsChecked.GetValue(),
+                                IsViewModel.IsChecked.GetValue());
 
-                        if (sourceCode.HasValue())
-                            itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
+                            if (sourceCode.HasValue())
+                                itemsSource.Add(new ConvertGridRow { SourceCode = sourceCode });
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
@@ -348,7 +359,7 @@ namespace EntityMaker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClearValue_Click(object sender, RoutedEventArgs e) => Clear();
+        private void ClearControl_Click(object sender, RoutedEventArgs e) => Clear();
         #endregion
 
         #region Generic method
