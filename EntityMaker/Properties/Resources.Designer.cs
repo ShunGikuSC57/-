@@ -233,15 +233,6 @@ namespace EntityMaker.Properties {
         }
         
         /// <summary>
-        ///   Open file に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string OPEN_FILE {
-            get {
-                return ResourceManager.GetString("OPEN_FILE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Pascal に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PASCAL {

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using Microsoft.Win32;
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
-using ClosedXML.Excel;
-using Microsoft.Win32;
 
 namespace EntityMaker
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Entity Maker Screen
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -54,7 +55,11 @@ namespace EntityMaker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e) => Clear();
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReadOnlyTextBox(FilePath);
+            Clear();
+        }
 
         /// <summary>
         /// TextBox check event
@@ -63,12 +68,11 @@ namespace EntityMaker
         /// <param name="e"></param>
         private void IsTextBox_Checked(object sender, RoutedEventArgs e)
         {
-            FileOpen.IsEnabled = false;
-            DefineExcel.IsEnabled = false;
+            DisableButton(SelectFile);
+            DisableButton(DefineExcel);
             IsNameOnly.IsEnabled = true;
             IsDefinition.IsEnabled = true;
-            ConvertSource.IsReadOnly = false;
-            ConvertSource.Background = Brushes.White;
+            ReadOnlyTextBox(ConvertSource, false);
 
             IsNameOnly.IsChecked = true;
             FilePath.Text = string.Empty;
@@ -81,12 +85,11 @@ namespace EntityMaker
         /// <param name="e"></param>
         private void IsExcel_Checked(object sender, RoutedEventArgs e)
         {
-            FileOpen.IsEnabled = true;
-            DefineExcel.IsEnabled = true;
+            EnableButton(SelectFile);
+            EnableButton(DefineExcel);
             IsNameOnly.IsEnabled = false;
             IsDefinition.IsEnabled = false;
-            ConvertSource.IsReadOnly = true;
-            ConvertSource.Background = Brushes.Silver;
+            ReadOnlyTextBox(ConvertSource);
 
             IsDefinition.IsChecked = true;
         }
@@ -96,12 +99,11 @@ namespace EntityMaker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FileOpen_Click(object sender, RoutedEventArgs e)
+        private void SelectFile_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             dialog.Filter = Properties.Resources.EXCEL_EXTENSION_FILTER;
-            if (dialog.ShowDialog().GetValue())
-                FilePath.Text = dialog.FileName;
+            if (dialog.ShowDialog().GetValue()) FilePath.Text = dialog.FileName;
         }
 
         /// <summary>
@@ -122,10 +124,9 @@ namespace EntityMaker
                 var dialog = new SaveFileDialog();
                 dialog.FileName = $"{Properties.Resources.DEF}.xlsx";
                 dialog.Filter = Properties.Resources.EXCEL_EXTENSION_FILTER;
-                if (dialog.ShowDialog().GetValue())
-                    book.SaveAs(dialog.FileName);
+                if (dialog.ShowDialog().GetValue()) book.SaveAs(dialog.FileName);
             }
-                
+
         }
 
         /// <summary>
@@ -217,8 +218,7 @@ namespace EntityMaker
                 if (!ConvertSource.Text.HasValue()) return;
                 foreach (var row in ConvertSource.Text.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None))
                 {
-                    if (!row.HasValue())
-                        continue;
+                    if (!row.HasValue()) continue;
                     var sourceCode = string.Empty;
                     if (IsNameOnly.IsChecked.GetValue())
                     {
@@ -368,6 +368,8 @@ namespace EntityMaker
         /// </summary>
         private void Clear()
         {
+            DisableButton(SelectFile);
+            DisableButton(DefineExcel);
             IsViewModel.IsEnabled = false;
             IsSnakeToPascal.IsEnabled = false;
             IsUseAsIs.IsEnabled = false;
@@ -404,6 +406,37 @@ namespace EntityMaker
         {
             if (!str.HasValue()) return string.Empty;
             return char.ToLower(str[0]) + str.Substring(1);
+        }
+
+        /// <summary>
+        /// Enable the button.
+        /// </summary>
+        /// <param name="button">Button</param>
+        private void EnableButton(Button button)
+        {
+            button.IsEnabled = true;
+            button.Foreground = Brushes.Black;
+        }
+
+        /// <summary>
+        /// Disable the button.
+        /// </summary>
+        /// <param name="button">Button</param>
+        private void DisableButton(Button button)
+        {
+            button.IsEnabled = false;
+            button.Foreground = Brushes.Gray;
+        }
+
+        /// <summary>
+        /// Makes the textbox read-only.
+        /// </summary>
+        /// <param name="text">TextBox</param>
+        /// <param name="isReadOnly">Read only?</param>
+        private void ReadOnlyTextBox(TextBox text, bool isReadOnly = true)
+        {
+            text.IsReadOnly = isReadOnly;
+            text.Background = isReadOnly ? Brushes.LightGray : Brushes.White;
         }
         #endregion
 

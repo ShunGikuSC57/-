@@ -181,9 +181,6 @@ UPDATED_AT</value>
   <data name="NAME_ONLY" xml:space="preserve">
     <value>Name only</value>
   </data>
-  <data name="OPEN_FILE" xml:space="preserve">
-    <value>Open file</value>
-  </data>
   <data name="PASCAL" xml:space="preserve">
     <value>Pascal</value>
   </data>

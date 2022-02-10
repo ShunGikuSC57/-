@@ -139,7 +139,7 @@
     <value>定義</value>
   </data>
   <data name="DEFINE_EXCEL" xml:space="preserve">
-    <value>定義Excelを表示</value>
+    <value>定義Excelを保存</value>
   </data>
   <data name="DEFINITION" xml:space="preserve">
     <value>定義</value>
@@ -181,9 +181,6 @@ UPDATED_AT</value>
   <data name="NAME_ONLY" xml:space="preserve">
     <value>名称のみ</value>
   </data>
-  <data name="OPEN_FILE" xml:space="preserve">
-    <value>ファイルを開く</value>
-  </data>
   <data name="PASCAL" xml:space="preserve">
     <value>パスカル</value>
   </data>
@@ -203,7 +200,7 @@ UPDATED_AT</value>
     <value>必須</value>
   </data>
   <data name="SELECT_FILE" xml:space="preserve">
-    <value>ファイルを選択する</value>
+    <value>ファイルを選択</value>
   </data>
   <data name="SNAKE_TO_PASCAL" xml:space="preserve">
     <value>スネーク から パスカル</value>

@@ -24,6 +24,9 @@
                 <Trigger Property="IsPressed" Value="True">
                     <Setter TargetName="Border" Property="Background" Value="#008B8B"/>
                 </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Border" Property="Background" Value="#F5F5F5"/>
+                </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
@@ -48,9 +51,9 @@
                     <RadioButton x:Name="IsExcel" Margin="5,0,5,0" Content="{x:Static resx:Resources.EXCEL}" Checked="IsExcel_Checked"/>
                 </StackPanel>
             </GroupBox>
-            <TextBox x:Name="FilePath" Margin="0,16,0,0" Height="23" Width="743" IsReadOnly="True" Background="#DCDCDC"/>
-            <Button x:Name="FileOpen" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:Resources.SELECT_FILE}" Click="FileOpen_Click"/>
-            <Button x:Name="DefineExcel" Margin="0,16,0,0" Height="23" Width="150" Content="{x:Static resx:Resources.DEFINE_EXCEL}" Click="DefineExcel_Click"/>
+            <TextBox x:Name="FilePath" Margin="0,16,0,0" Height="23" Width="743"/>
+            <Button x:Name="SelectFile" Margin="0,16,0,0" Height="23" Width="150" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.SELECT_FILE}" Click="SelectFile_Click"/>
+            <Button x:Name="DefineExcel" Margin="0,16,0,0" Height="23" Width="150" Template="{StaticResource DefaultButton}" Content="{x:Static resx:Resources.DEFINE_EXCEL}" Click="DefineExcel_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <GroupBox Header="{x:Static resx:Resources.PASTE_TYPE}" Margin="0,5,5,0">
